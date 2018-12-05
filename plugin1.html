@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <title>Title</title>
+     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+          crossorigin="anonymous"></script>
+</head>
+
+<body>
+     <div class="type1">type1</div>
+     <div class="type2">type2</div>
+     <script>
+          (function ($) {
+
+               function SetColor(element, option) {
+                    this._element = null
+                    this._option = null
+
+                    this._init(element, option)
+                    this._setStyle()
+               }
+
+               SetColor.prototype._init = function (element, option) {
+                    this._element = $(element);
+                    this._option = option
+               };
+
+               SetColor.prototype._setStyle = function () {
+                    this._element.css({
+                         'background-color': this._option.bgcolor,
+                         'color': this._option.fontcolor
+                    });
+               };
+
+               $.fn.setColor = function (opt) {
+                    this.each(function () {
+                         return new SetColor(this, opt);
+                    });
+               }
+          })(jQuery);
+
+          $(function () {
+               $('.type1').setColor({
+                    'bgcolor': 'blue',
+                    'fontcolor': 'white'
+               });
+
+               $('.type2').setColor({
+                    'bgcolor': '#c30d23',
+                    'fontcolor': 'white'
+               });
+          });
+     </script>
+</body>
+
+</html>
+플러그인 반드는 심플한 코드에요..
